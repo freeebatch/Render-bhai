@@ -75,13 +75,13 @@ async def start(bot, message):
 
   keyboard = [
     [
-      InlineKeyboardButton("🚀 Physics Wallah without Purchase 🚀", callback_data="pwwp")
+      InlineKeyboardButton("ðŸš€ Physics Wallah without Purchase ðŸš€", callback_data="pwwp")
     ],
     [
-      InlineKeyboardButton("📘 Classplus without Purchase 📘", callback_data="cpwp")
+      InlineKeyboardButton("ðŸ“˜ Classplus without Purchase ðŸ“˜", callback_data="cpwp")
     ],
     [
-      InlineKeyboardButton("📒 Appx Without Purchase 📒", callback_data="appxwp")
+      InlineKeyboardButton("ðŸ“’ Appx Without Purchase ðŸ“’", callback_data="appxwp")
     ]
   ]
 
@@ -89,7 +89,7 @@ async def start(bot, message):
 
   await message.reply_photo(
     photo=random_image_url,
-    caption="**PLEASE👇PRESS👇HERE**",
+    caption="**PLEASEðŸ‘‡PRESSðŸ‘‡HERE**",
     quote=True,
     reply_markup=reply_markup
   )
@@ -274,17 +274,17 @@ def find_pw_old_batch(batch_search, message):
     if not matching_batches:
         return []
 
-    batch_list_text = f"🔍 **Total matching batches: {len(matching_batches)}**
+    batch_list_text = f"ðŸ” **Total matching batches: {len(matching_batches)}**
 
 "
     for idx, batch in enumerate(matching_batches):
-        batch_list_text += f"`{{idx}}` ➜ {{batch['batch_name']}}
+        batch_list_text += f"`{idx}` âžœ {batch['batch_name']}
 "
 
     async def ask_range():
         await message.reply(
             batch_list_text + "
-📥 **Enter range like `0-3` to extract multiple batches:**"
+ðŸ“¥ **Enter range like `0-3` to extract multiple batches:**"
         )
         response_msg = await message.chat.listen()
         return response_msg.text.strip()
@@ -343,7 +343,7 @@ def find_pw_old_batch(batch_search, message):
     batch_list_text = "**Matching Batches:**
 "
     for idx, batch in enumerate(matching_batches):
-        batch_list_text += f"`{{idx}}` ➜ {{batch['batch_name']}}
+        batch_list_text += f"`{{idx}}` âžœ {{batch['batch_name']}}
 "
 
     # Ask user for start and end index
@@ -539,7 +539,7 @@ async def process_pwwp(bot: Client, m: Message, user_id: int):
                 try:
                     async with session.post(f"https://api.penpencil.co/v3/oauth/token", json=payload, headers=headers) as response:
                         access_token = (await response.json())["data"]["access_token"]
-                        monster = await editable.edit(f"<b>Physics Wallah Login Successful ✅</b>\n\n<pre language='Save this Login Token for future usage'>{access_token}</pre>\n\n")
+                        monster = await editable.edit(f"<b>Physics Wallah Login Successful âœ…</b>\n\n<pre language='Save this Login Token for future usage'>{access_token}</pre>\n\n")
                         editable = await m.reply_text("**Getting Batches In Your I'd**")
                     
                 except Exception as e:
@@ -560,7 +560,7 @@ async def process_pwwp(bot: Client, m: Message, user_id: int):
                     response.raise_for_status()
                     batches = (await response.json()).get("data", [])
             except Exception as e:
-                await editable.edit("**```\nLogin Failed❗TOKEN IS EXPIRED```\nPlease Enter Working Token\n                       OR\nLogin With Phone Number**")
+                await editable.edit("**```\nLogin Failedâ—TOKEN IS EXPIRED```\nPlease Enter Working Token\n                       OR\nLogin With Phone Number**")
                 return
         
             await editable.edit("**Enter Your Batch Name**")
@@ -980,7 +980,7 @@ async def process_cpwp(bot: Client, m: Message, user_id: int):
                                 for cnt, course in enumerate(courses):
                                     name = course['name']
                                     price = course['finalPrice']
-                                    text += f'{cnt + 1}. ```\n{name} 💵₹{price}```\n'
+                                    text += f'{cnt + 1}. ```\n{name} ðŸ’µâ‚¹{price}```\n'
 
                                 await editable.edit(f"**Send index number of the Category Name\n\n{text}\nIf Your Batch Not Listed Then Enter Your Batch Name**")
                             
@@ -1020,7 +1020,7 @@ async def process_cpwp(bot: Client, m: Message, user_id: int):
                                                 for cnt, course in enumerate(courses):
                                                     name = course['name']
                                                     price = course['finalPrice']
-                                                    text += f'{cnt + 1}. ```\n{name} 💵₹{price}```\n'
+                                                    text += f'{cnt + 1}. ```\n{name} ðŸ’µâ‚¹{price}```\n'
                                                 await editable.edit(f"**Send index number of the Batch to download.\n\n{text}**")
                                             
                                                 try:
@@ -1100,7 +1100,7 @@ async def process_cpwp(bot: Client, m: Message, user_id: int):
 
                                             await editable.delete(True)
                                         
-                                            caption = f"**App Name : ```\n{App_Name}({org_code})```\nBatch Name : ```\n{selected_batch_name}``````\n🎬 : {video_count} | 📁 : {pdf_count} | 🖼  : {image_count}``````\nTime Taken : {formatted_time}```**"
+                                            caption = f"**App Name : ```\n{App_Name}({org_code})```\nBatch Name : ```\n{selected_batch_name}``````\nðŸŽ¬ : {video_count} | ðŸ“ : {pdf_count} | ðŸ–¼  : {image_count}``````\nTime Taken : {formatted_time}```**"
                                         
                                             with open(file, 'rb') as f:
                                                 doc = await m.reply_document(document=f, caption=caption, file_name=f"{clean_batch_name}.txt")
@@ -1625,7 +1625,7 @@ async def process_appxwp(bot: Client, m: Message, user_id: int):
                     for cnt, course in enumerate(courses):
                         name = course["course_name"]
                         price = course["price"]
-                        text += f'{cnt + 1}. {name} 💵₹{price}\n'
+                        text += f'{cnt + 1}. {name} ðŸ’µâ‚¹{price}\n'
                     
                     course_details = f"{user_id}_paid_course_details"
                 
@@ -1658,7 +1658,7 @@ async def process_appxwp(bot: Client, m: Message, user_id: int):
                     for cnt, course in enumerate(courses):
                         name = course["course_name"]
                         price = course["price"]
-                        text += f'{cnt + 1}. ```\n{name} 💵₹{price}```\n'
+                        text += f'{cnt + 1}. ```\n{name} ðŸ’µâ‚¹{price}```\n'
                     await editable.edit(f"**Send index number of the course to download.\n\n{text}**")
             else:
                 raise Exception("Did not found any course")
@@ -1783,7 +1783,7 @@ if __name__ == "__main__":
 @Client.on_message(filters.command("extract_all"))
 async def extract_all_batches(client, message):
     user_id = message.from_user.id
-    await message.reply("🔄 Starting to extract all batches. This may take a while...")
+    await message.reply("ðŸ”„ Starting to extract all batches. This may take a while...")
 
     try:
         # Load batch data
@@ -1816,47 +1816,47 @@ async def extract_all_batches(client, message):
                     )
 
                 # Send a message for each batch processed
-                await message.reply(f"✅ Extracted batch: `{batch_name}`")
+                await message.reply(f"âœ… Extracted batch: `{batch_name}`")
 
     except Exception as e:
-        await message.reply(f"❌ Error during extraction: `{str(e)}`")
+        await message.reply(f"âŒ Error during extraction: `{str(e)}`")
 
 
 
 @Client.on_message(filters.command("batch_old"))
 async def handle_batch_old(client, message):
     user_id = message.from_user.id
-    await message.reply("🔍 Searching for old batches...")
+    await message.reply("ðŸ” Searching for old batches...")
 
     try:
         response = requests.get("https://freeebatch.github.io/Data/data1.json")
         response.raise_for_status()
         data = response.json()
     except Exception as e:
-        await message.reply(f"❌ Failed to fetch batch data: {str(e)}")
+        await message.reply(f"âŒ Failed to fetch batch data: {str(e)}")
         return
 
     matching_batches = [batch for batch in data if "old" in batch['batch_name'].lower()]
 
     if not matching_batches:
-        await message.reply("❌ No old batches found.")
+        await message.reply("âŒ No old batches found.")
         return
 
     # Show batch list
     batch_list_text = "\n".join([f"{idx+1}. {batch['batch_name']}" for idx, batch in enumerate(matching_batches)])
-    await message.reply(f"📦 Found {len(matching_batches)} old batches:\n{batch_list_text}\n\nSend range like `1-3` to extract.")
+    await message.reply(f"ðŸ“¦ Found {len(matching_batches)} old batches:\n{batch_list_text}\n\nSend range like `1-3` to extract.")
 
     try:
         user_response = await client.listen(message.chat.id, timeout=120)
         match = re.match(r"(\d+)-(\d+)", user_response.text.strip())
         if not match:
-            await message.reply("❌ Invalid input. Please use format like `1-3`.")
+            await message.reply("âŒ Invalid input. Please use format like `1-3`.")
             return
 
         start, end = map(int, match.groups())
         start, end = max(1, start), min(len(matching_batches), end)
 
-        await message.reply(f"🔄 Extracting batches {start} to {end}...")
+        await message.reply(f"ðŸ”„ Extracting batches {start} to {end}...")
 
         headers = {"User-Agent": "Mozilla/5.0", "Accept": "*/*"}
 
@@ -1882,9 +1882,9 @@ async def handle_batch_old(client, message):
                         headers=headers
                     )
 
-                await message.reply(f"✅ Extracted: `{batch_name}`")
+                await message.reply(f"âœ… Extracted: `{batch_name}`")
 
     except ListenerTimeout:
-        await message.reply("⌛ Timeout. You didn’t reply in time.")
+        await message.reply("âŒ› Timeout. You didnâ€™t reply in time.")
     except Exception as e:
-        await message.reply(f"❌ Error: {str(e)}")
+        await message.reply(f"âŒ Error: {str(e)}")
