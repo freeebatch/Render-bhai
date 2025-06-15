@@ -1557,8 +1557,16 @@ async def process_appxwp(bot: Client, m: Message, user_id: int):
             else:
                 raise Exception("Did not found any course")
                 
-            try:
-                input_text = input5.text.strip()
+           try:
+    input5 = await bot.listen(chat_id=m.chat.id, filters=filters.user(user_id), timeout=120)
+    raw_text5 = input5.text
+    await input5.delete(True)
+except:
+    await editable.edit("**Timeout! You took too long to respond**")
+    return
+
+#  This is now safely after the try-except block:
+input_text = input5.text.strip()
 selected_indices = []
 
 for val in input_text.split():
